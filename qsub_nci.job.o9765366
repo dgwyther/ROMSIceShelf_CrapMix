@@ -1,0 +1,14 @@
+rm -f -r /home/581/deg581/make_macros.mk
+
+======================================================================================
+                  Resource Usage on 2016-10-24 07:37:37:
+   Job Id:             9765366.r-man2
+   Project:            nk1
+   Exit Status:        0
+   Service Units:      594.70
+   NCPUs Requested:    64                     NCPUs Used: 64              
+                                           CPU Time Used: 589:52:15                                  
+   Memory Requested:   5.0GB                 Memory Used: 1.27GB          
+   Walltime requested: 10:00:00            Walltime Used: 09:17:32        
+   JobFS requested:    400.0MB                JobFS used: 1.0KB           
+======================================================================================

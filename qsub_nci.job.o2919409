@@ -1,0 +1,27 @@
+/usr/bin/cpp -P -traditional -DMPI -DLINUX -DX86_64 -DIFORT -D'ROOT_DIR="/short/nk1/deg581/ISOMIP_PLUS_Ocean0_CrapMix_N11_5.00e-2"' -DISOMIP_PLUS -D'HEADER="isomip_plus.h"' -D'ROMS_HEADER="isomip_plus.h"' -DNestedGrids= -D'ANALYTICAL_DIR="/short/nk1/deg581/ISOMIP_PLUS_Ocean0_CrapMix_N11_5.00e-2/ROMS/Functionals"' -D'SVN_REV="exported"' -IROMS/Include -IROMS/Nonlinear -IROMS/Nonlinear/Biology -IROMS/Nonlinear/IceShelf -IROMS/Nonlinear/Sediment -IROMS/Utility -IROMS/Drivers -IROMS/Functionals -IMaster -ICompilers -D'HEADER_DIR="/short/nk1/deg581/ISOMIP_PLUS_Ocean0_CrapMix_N11_5.00e-2/ROMS/Include"'  ROMS/Nonlinear/lmd_vmix.F > Build/lmd_vmix.f90
+/usr/bin/cpp -P -traditional -DMPI -DLINUX -DX86_64 -DIFORT -D'ROOT_DIR="/short/nk1/deg581/ISOMIP_PLUS_Ocean0_CrapMix_N11_5.00e-2"' -DISOMIP_PLUS -D'HEADER="isomip_plus.h"' -D'ROMS_HEADER="isomip_plus.h"' -DNestedGrids= -D'ANALYTICAL_DIR="/short/nk1/deg581/ISOMIP_PLUS_Ocean0_CrapMix_N11_5.00e-2/ROMS/Functionals"' -D'SVN_REV="exported"' -IROMS/Include -IROMS/Nonlinear -IROMS/Nonlinear/Biology -IROMS/Nonlinear/IceShelf -IROMS/Nonlinear/Sediment -IROMS/Utility -IROMS/Drivers -IROMS/Functionals -IMaster -ICompilers -D'HEADER_DIR="/short/nk1/deg581/ISOMIP_PLUS_Ocean0_CrapMix_N11_5.00e-2/ROMS/Include"'  ROMS/Nonlinear/IceShelf/iceshelf_vbc.F > Build/iceshelf_vbc.f90
+rm -f -r /home/581/deg581/make_macros.mk
+ROMS/Bin/cpp_clean Build/iceshelf_vbc.f90
+ROMS/Bin/cpp_clean Build/lmd_vmix.f90
+cd Build; /apps/openmpi/wrapper/fortran/mpif90 -c -heap-arrays -fp-model precise -ip -O3 iceshelf_vbc.f90
+cd Build; /apps/openmpi/wrapper/fortran/mpif90 -c -heap-arrays -fp-model precise -ip -O3 lmd_vmix.f90
+cd Build; /apps/openmpi/wrapper/fortran/mpif90 -c -heap-arrays -fp-model precise -ip -O3 iceshelf.f90
+cd Build; /apps/openmpi/wrapper/fortran/mpif90 -c -heap-arrays -fp-model precise -ip -O3 main3d.f90
+ar r Build/libNLM_is.a Build/iceshelf.o Build/iceshelf_vbc.o
+ranlib Build/libNLM_is.a
+ar r Build/libNLM.a Build/bbl.o Build/bc_2d.o Build/bc_3d.o Build/bc_bry2d.o Build/bc_bry3d.o Build/bulk_flux.o Build/bvf_mix.o Build/conv_2d.o Build/conv_3d.o Build/conv_bry2d.o Build/conv_bry3d.o Build/diag.o Build/exchange_2d.o Build/exchange_3d.o Build/forcing.o Build/frc_adjust.o Build/get_data.o Build/get_idata.o Build/gls_corstep.o Build/gls_prestep.o Build/hmixing.o Build/ini_fields.o Build/initial.o Build/interp_floats.o Build/lmd_bkpp.o Build/lmd_skpp.o Build/lmd_swfrac.o Build/lmd_vmix.o Build/main2d.o Build/main3d.o Build/mpdata_adiff.o Build/my25_corstep.o Build/my25_prestep.o Build/nesting.o Build/obc_adjust.o Build/obc_volcons.o Build/omega.o Build/output.o Build/pre_step3d.o Build/prsgrd.o Build/radiation_stress.o Build/rho_eos.o Build/rhs3d.o Build/set_avg.o Build/set_data.o Build/set_depth.o Build/set_massflux.o Build/set_tides.o Build/set_vbc.o Build/set_zeta.o Build/step2d.o Build/step3d_t.o Build/step3d_uv.o Build/step_floats.o Build/t3dbc_im.o Build/t3dmix.o Build/tkebc_im.o Build/tpd.o Build/u2dbc_im.o Build/u3dbc_im.o Build/uv3dmix.o Build/v2dbc_im.o Build/v3dbc_im.o Build/vwalk_floats.o Build/wetdry.o Build/wvelocity.o Build/zetabc.o
+ranlib Build/libNLM.a
+/apps/openmpi/wrapper/fortran/mpif90 -heap-arrays -fp-model precise -ip -O3  Build/esmf_roms.o Build/master.o Build/ocean_control.o Build/ocean_coupler.o Build/propagator.o Build/roms_export.o Build/roms_import.o -o oceanM Build/libUTIL.a Build/libNLM.a Build/libNLM_bio.a Build/libNLM_is.a Build/libNLM_sed.a Build/libANA.a Build/libUTIL.a Build/libMODS.a /apps/netcdf/4.3.2/lib/Intel/libnetcdff.so
+
+======================================================================================
+                  Resource Usage on 2017-03-08 09:51:30:
+   Job Id:             2919409.r-man2
+   Project:            gh8
+   Exit Status:        255
+   Service Units:      518.35
+   NCPUs Requested:    64                     NCPUs Used: 64              
+                                           CPU Time Used: 512:01:36                                  
+   Memory Requested:   5.0GB                 Memory Used: 931.71MB        
+   Walltime requested: 10:00:00            Walltime Used: 08:05:57        
+   JobFS requested:    400.0MB                JobFS used: 1.0KB           
+======================================================================================
